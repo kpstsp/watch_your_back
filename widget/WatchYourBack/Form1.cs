@@ -10,14 +10,37 @@ using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace WatchYourBack
 {
     public partial class Form1 : Form
     {
+        private bool isPinned = false;
         public Form1()
         {
             InitializeComponent();
+            TopMost = true; // Make the window stay on top
+        }
+
+        // Implement logic for pinning/unpinning the window
+        private void PinButton_Click(object sender, EventArgs e)
+        {
+            isPinned = !isPinned; // Toggle pinning state
+
+            // Change button color based on pinning state
+            if (isPinned)
+            {
+                PinButton.BackColor = Color.Blue;
+                PinButton.ForeColor = Color.White;
+            }
+            else
+            {
+                PinButton.BackColor = DefaultBackColor; // Restore default color
+                PinButton.ForeColor = DefaultForeColor;
+            }
+
+            TopMost = isPinned; // Set TopMost property based on pinning state
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -30,7 +53,14 @@ namespace WatchYourBack
             timer.Interval = 10000; // 10 seconds
             timer.Start();
 
-            
+
+            // Start a timer to refresh the data grid every 10 seconds
+            var gridTimer = new System.Windows.Forms.Timer();
+            gridTimer.Tick += (s, ev) => RefreshDataGridView();
+            gridTimer.Interval = 10000; // 10 seconds
+            gridTimer.Start();
+
+
         }
 
         private void RefreshUserList()
@@ -179,6 +209,11 @@ namespace WatchYourBack
                 return path.Substring(2, index - 2);
             }
             return path;
+        }
+
+        private void RefreshDataGridView()
+        {
+            PopulateRemoteConnections();
         }
     }
 }

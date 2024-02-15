@@ -34,6 +34,7 @@
             this.username = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.remoteHost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sharedFolder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PinButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sharesDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,11 +97,22 @@
             this.sharedFolder.ReadOnly = true;
             this.sharedFolder.Width = 125;
             // 
+            // PinButton
+            // 
+            this.PinButton.Location = new System.Drawing.Point(794, 12);
+            this.PinButton.Name = "PinButton";
+            this.PinButton.Size = new System.Drawing.Size(119, 23);
+            this.PinButton.TabIndex = 3;
+            this.PinButton.Text = "PIN/UNPIN";
+            this.PinButton.UseVisualStyleBackColor = true;
+            this.PinButton.Click += new System.EventHandler(this.PinButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(925, 742);
+            this.Controls.Add(this.PinButton);
             this.Controls.Add(this.sharesDataGridView);
             this.Controls.Add(this.currentUsersLabel);
             this.Controls.Add(this.userListBox);
@@ -121,6 +133,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn username;
         private System.Windows.Forms.DataGridViewTextBoxColumn remoteHost;
         private System.Windows.Forms.DataGridViewTextBoxColumn sharedFolder;
+        private System.Windows.Forms.Button PinButton;
     }
 }
 
